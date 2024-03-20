@@ -1,0 +1,29 @@
+.new-button{
+    background-image: url(refresh.png);
+    background-size: cover;
+    width:15px;
+    height:15px;
+    background-color: white;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+td{
+    height: 30px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.name{
+    text-align: left;
+}
+
+tr{
+    border:55px
+}
+
+#manga-table tr:hover{
+    /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+    border-color: rgb(232, 121, 191);
+  }

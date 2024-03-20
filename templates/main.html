@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Поиск имен..">
+    <button>Поиск</button>
+    <button>Новая манга</button>
+    <form action="" method="post" id="form">
+    <table border="1" id="manga-table">
+        <tr>
+            <th  onclick="sortTable(0)">Название</th>
+            <th >Категория</th>
+            <th  onclick="sortTable(1)">Цена, руб.</th>
+            <th onclick="sortTable(2)">Бренд</th>
+        </tr>
+
+
+
+        <!--<tr>
+            <td class="name">Энниада</td>
+            <td>12.09.2023</td>
+            <td>213</td>
+            <td class="new-td">214 <button class="new-button"></button></td>
+        </tr>-->
+    </table>
+</form>
+    <a href="https://www.flaticon.com/free-icons/refresh" title="refresh icons">Refresh icons created by Becris -
+        Flaticon</a>
+
+        <script src="{{ url_for('static',filename='script.js') }}"></script>
+</body>
+
+</html>

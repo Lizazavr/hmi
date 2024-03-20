@@ -1,16 +1,28 @@
-# This is a sample Python script.
+from flask import Flask, render_template, request, redirect, jsonify
+import mariadb
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Подключение к базе данных
+try:
+        conn = mariadb.connect(user="root", password="lizliz31415", host="127.0.0.1", port=3476, database="Talartis")
+        print("succsefull")
+except mariadb.Error as e:
+        print(f"Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
+
+UPLOAD_FOLDER = 'doc'
+ALLOWED_EXTENSIONS = {'doc'}
+
+app = Flask(__name__, template_folder='templates')
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/', methods=["POST", "GET"])
+def index():
+    return render_template('main.html')
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    app.run(debug=True)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# generator = Blueprint('generator', __name__, template_folder='templates', static_folder='static')
