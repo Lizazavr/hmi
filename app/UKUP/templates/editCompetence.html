@@ -1,0 +1,82 @@
+{% extends "Sidebar.html" %}
+{% block content %}
+{{ super() }}
+<div class="content"  style="flex:1; height:2000px;  padding:0px;">
+   <form action="" method="post" style="width:100%; margin-top:5px">
+      <div>Добавьте свою собственную компетенцию на нашем сайте</div>
+      <input type="hidden" id="UK" value="{{ UK }}">
+      <input type="hidden" id="OPK" value="{{ OPK }}">
+      <input type="hidden" id="PK" value="{{ PK }}">
+      <input name="current_year" id="year" type="hidden" value="{{ current_year }}">
+      <input name="current_direction" id="direction" type="hidden" value="{{ current_direction.id }}">
+      {{ form.name(class="form-control", style="width:80%; margin-top:5px", id="name", readonly=True) }}
+      {{ form.year_approved(class="form-select", style="width:80%; margin-top:5px", id="year_approved", disabled=True) }}
+       {{ form.year_cancelled(class="form-select", style="width:80%; margin-top:5px", id="year_cancelled", disabled=True) }}
+      {{ form.type(class="form-select", style="width:80%; margin-top:5px", id="type", disabled=True)}}
+      {{ form.formulation(class="form-select", style="width:80%; margin-top:5px", id="module") }}
+      <div id="indicator">
+      <button class="btn" type="button" onclick="AddIndicator()" style="width:80%; margin-top:5px; border:solid 1px;">+</button>
+      </div>
+      {{ form.submit() }}
+   </form>
+</div>
+<script>
+   var type = document.getElementById("type");
+   var num = document.getElementById("num");
+   var count = 1;
+   type.addEventListener("change",function(){
+      var name = document.getElementById("name");
+      if (type.value=="УК"){
+         var UK = document.getElementById("UK");
+         if (UK.value=="[]")
+         {
+            num.value = 1
+         }
+         else{
+            var numValue = UK.value.slice(1,-1).split(", ")
+            num.value = Number(numValue.at(-1)) + 1
+         }
+      }
+      if (type.value=="ОПК"){
+         var OPK = document.getElementById("OPK");
+         if (OPK.value=="[]")
+         {
+            num.value = 1
+         }
+         else{
+            var numValue = OPK.value.slice(1,-1).split(", ")
+            num.value = Number(numValue.at(-1)) + 1
+         }
+      }
+      if (type.value=="ПК"){
+         var PK = document.getElementById("PK");
+         if (PK.value=="[]")
+         {
+            num.value = 1
+         }
+         else{
+            var numValue = PK.value.slice(1,-1).split(", ")
+            num.value = Number(numValue.at(-1)) + 1
+         }
+      }
+      name.value = `${type.value}-${num.value}`;
+   });
+   num.addEventListener("change",function(){
+      var name = document.getElementById("name");
+
+      name.value = `${type.value}-${num.value}`;
+   });
+   function AddIndicator() {
+        var name = document.getElementById("name");
+        var newIndicator = document.createElement('div');
+        newIndicator.innerHTML = `<input type="text" class="form-control" readonly value="${name.value}.${count}" style="width:20%" ><input class="form-control" style="width:60%; margin-top:5px;"></input><button class="btn" type="button" onclick="RemoveIndicator(this) "style="width:80%; margin-top:5px; border:solid 1px;">-`;
+        document.getElementById('indicator').appendChild(newIndicator);
+        count = count + 1;
+   }
+   function RemoveIndicator(indicator)
+   {
+      indicator.parentNode.remove();
+   }
+</script>
+</div>
+{% endblock %}\

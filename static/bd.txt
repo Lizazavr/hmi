@@ -1,7 +1,0 @@
-create table tbl_brands(id int auto_increment, brand_name char(50), PRIMARY KEY(id));
-
-create table tbl_category(id int auto_increment, name char(50), primary key(id));
-
-create table tbl_image(id int auto_increment, name char(100), url char, primary key(id));
-
-create table tbl_products(id int auto_increment, name char, id_category int, selery decimal, id_brand int, primary key(id), foreign key (id_category) references tbl_category (id), foreign key (id_brand) references tbl_brands(id));
