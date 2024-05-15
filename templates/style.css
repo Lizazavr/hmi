@@ -1,0 +1,254 @@
+body {
+    background-color: #b18d61;
+}
+
+@media (max-device-width: 1024px) {
+    body {
+        font-size: 14px;
+    }
+
+    aside {
+        font-size: 12px;
+        float: top;
+        position: relative;
+        /*margin-left: 0;*/
+    }
+
+    h {
+        font-weight: bold;
+    }
+
+    .block {
+        display: grid;
+        grid-template-columns: 100%
+    }
+
+    /*картинка герба хогвартса*/
+    .logo {
+        padding-left: 15px;
+        padding-top: 8px;
+        width: 170px;
+        float: left
+    }
+
+    /*секция новостей*/
+    .news {
+        width: 99%;
+        /*float: left;*/
+        overflow: hidden;
+        min-height: 200px;
+        padding-bottom: 7px;
+        padding-left: 10px;
+    }
+}
+
+@media (min-device-width: 1280px) {
+
+    /*основной блок на странице*/
+    .block {
+        display: grid;
+        grid-template-columns: 70% 30%
+    }
+
+    /*картинка герба хогвартса*/
+    .logo {
+        padding-left: 5px;
+        padding-top: 0px;
+        width: 115px;
+        float: left
+    }
+
+    /*секция новостей*/
+    .news {
+        width: 98%;
+        float: left;
+        overflow: hidden;
+        min-height: 200px;
+        margin-right: 0;
+        padding-bottom: 7px;
+        padding-left: 10px;
+    }
+
+}
+
+/*заголовок*/
+header {
+    min-height: 50px;
+}
+
+h1,
+#head {
+    text-align: center
+}
+
+a:link {
+    text-decoration: none;
+    /* Убирает подчеркивание для ссылок */
+}
+
+/*подвал*/
+footer {
+    min-height: 35px;
+    text-align: right;
+    position: fixed;
+    /* Фиксированное положение */
+    left: 8px;
+    bottom: 0;
+    right: 8px;
+}
+
+.border {
+    padding-left: 5px;
+    /* Поля */
+    background: #ebd6bc;
+    /* Цвет фона */
+    border: 2px solid #000000;
+    /* Параметры рамки */
+    margin: 0
+}
+
+/*менюшка*/
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 50px;
+    /*padding-bottom: 10px;*/
+}
+
+/*секция факультетов*/
+.colleg {
+    width: 97%;
+    overflow: hidden;
+    min-height: 200px;
+    margin-right: 0;
+    padding-bottom: 7px;
+    padding-left: 10px;
+}
+
+/*боковые панели*/
+aside {
+    float: right;
+    position: relative;
+    min-height: 200px;
+    margin-left: 0;
+}
+
+/*отдельная новость*/
+article {
+    padding: 15px;
+    /* Поля */
+    background: #b18d61;
+    /* Цвет фона */
+    border: 2px solid #000000;
+    /* Параметры рамки */
+    width: 95%;
+    float: right;
+}
+
+.button {
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: #cac3a5;
+    border: 2px solid #000000;
+    /* Параметры рамки */
+    margin: 2px;
+    margin-top: 5px;
+    font: 20px Arial
+}
+
+.buttons {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+h {
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.border>p {
+    text-indent: 20px;
+}
+
+fieldset {
+    padding-left: 5px;
+    /* Поля */
+    background: #ebd6bc;
+    /* Цвет фона */
+    border: 2px solid #000000;
+    /* Параметры рамки */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+#form {
+    display: grid;
+    grid-template-columns: 50% 50%
+}
+
+.hystmodal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    /* см. ниже */
+    align-items: center;
+    z-index: 99;
+    /* Чтобы окно не прилипало к границе
+браузера установим отступы */
+    padding: 30px 0;
+    font-family: Segoe Script, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+.text1 {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 7px;
+}
+
+.but {
+    border-radius: 10px;
+    background-color: #cac3a5;
+    border: 2px solid #000000;
+    /* Параметры рамки */
+    font: 14px Arial;
+    color: black;
+    padding: 13px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    max-width: 150px;
+}
+
+#butt {
+    display: grid;
+    grid-template-columns: 50% 50%
+}
+
+.header_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 100px;
+}
+
+body {
+    margin: 0;
+}
+
+.menu_text {
+    margin-top: 20px;
+}

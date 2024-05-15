@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talartis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: inter, sans-serif;
+      background-color: #b1d2e5;
+      color: white;
+    }
+
+    .button {
+      background-color: #fbcc84;
+      color: white;
+      border: none;
+      width: 200px;
+      height: 65px;
+      border-radius: 5px;
+      margin: 0 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* добавляем анимацию перехода */
+      font-size: 24px;
+    }
+
+    /* эффект увеличения при наведении */
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    /* изменение цвета при нажатии */
+    .button:active {
+      background-color: orange;
+    }
+
+    .header {
+      background-color: #fbcc84;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0px;
+      width: 100%;
+      position: fixed;
+    }
+
+    .logo {
+      height: 45px;
+      width: 120px;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .menu {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .menu a:not(:last-child) {
+      border-right: 2px solid white;
+    }
+
+    .avatar {
+      height: 50px;
+      width: 50px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      margin-left: 55%;
+    }
+
+    #avatar {
+      height: 49px;
+      width: 49px;
+    }
+
+    .background-text {
+      font-size: 48px;
+      margin-left: 200px;
+      margin-right: 200px;
+      margin-top: 100px;
+    }
+
+    .secondary-text {
+      font-size: 36px;
+      margin-left: 200px;
+      margin-right: 200px;
+      margin-top: 100px;
+    }
+
+    .bottom-button {
+      background-color: #fbcc84;
+      color: white;
+      border: none;
+      width: 100px;
+      height: 50px;
+      border-radius: 5px;
+      margin-top: 50px;
+      cursor: pointer;
+    }
+
+    .footer {
+      background-color: #b1d2e5;
+      height: 90px;
+      border-top: 1px solid white;
+
+      bottom: 0;
+      width: 100%;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    #basket {
+      border: none;
+      padding-left: 20px;
+    }
+
+    .banner-but {
+      margin-top: 650px;
+    }
+
+    .marg {
+      margin-top: 50px;
+    }
+
+    .gallery-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .gallery {
+      display: flex;
+      width: 900px;
+      height: 100%;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery-item {
+      flex: 0 0 200px;
+      margin: 0 10px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      border-radius: 5px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .end {
+      background-color: white;
+      padding-top: 13%;
+    }
+
+    .end a {
+      color: #fbcc84;
+      font-size: 20px;
+    }
+
+    .dop {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+
+    }
+
+    .dop a {
+      color: #fbcc84;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      padding-right: 95px;
+    }
+
+    #tg {
+      background-image: url('tg.png');
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+    }
+
+    #vk {
+      background-image: url('vk.png');
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+    }
+
+    .cart-wrapper {
+      position: fixed;
+      top: 0;
+      right: -25%;
+      width: 25%;
+      height: 100%;
+      background-color: #fbcc84;
+      transition: right 0.5s ease, opacity 0.5s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+
+    .cart-wrapper.open {
+      right: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-wrapper.closing {
+      right: -25%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      display: none;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .overlay.fading {
+      opacity: 0;
+    }
+
+    .cart-wrapper .close-icon {
+      align-self: flex-end;
+      cursor: pointer;
+    }
+
+    .cart-wrapper-product {
+      position: fixed;
+      top: 0;
+      right: -25%;
+      width: 25%;
+      height: 100%;
+      background-color: #fbcc84;
+      transition: right 0.5s ease, opacity 0.5s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cart-wrapper-product.open {
+      right: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-wrapper-product.closing {
+      right: -25%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cart-wrapper-product .close-icon-product {
+      align-self: flex-end;
+      cursor: pointer;
+    }
+
+    .blue-button {
+      background-color: #b1d2e5;
+      color: white;
+      border: none;
+      width: 150px;
+      height: 50px;
+      border-radius: 5px;
+      margin: 0 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* добавляем анимацию перехода */
+      font-size: 24px;
+    }
+
+    /* эффект увеличения при наведении */
+    .blue-button:hover {
+      transform: scale(1.1);
+    }
+
+    .poisk {
+      background-color: #b1d2e5;
+      border-radius: 5px;
+      color: white;
+      width: 650px;
+      height: 20px;
+      border: 1px solid white;
+      padding-right: 30px;
+    }
+
+    .poisk:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+
+    .background {
+      background-size: cover;
+      height: 120px;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    #glass {
+      height: 25px;
+      width: 25px;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .poisk-poisk {
+      position: relative;
+      margin-top: 90px;
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .image-row img {
+      margin: 0 10px;
+      width: 40%;
+      border-radius: 5px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: center;
+      margin-top: 20px;
+    }
+
+    .image-grid img {
+      border-radius: 5px;
+      width: 80%;
+      margin-top: 20px;
+    }
+
+    .numbers {
+      height: 40px;
+      width: 40px;
+      margin: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+
+    .number {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      background-image: url('logo.png');
+    }
+
+    .logo:hover img {
+      transform: scale(1.5);
+    }
+
+    .img-pic {
+      display: inline-block;
+      transition: filter 0.3s ease;
+    }
+
+    
+
+
+
+    .img-pic.darkened .price-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+
+      <a href="file:///D:/УЧЕБА/4.2/web/Main.html">
+        <img src="logo.png" alt="Аватарка" class="logo">
+      </a>
+
+      <nav class="menu">
+        <a href="file:///D:/%D0%A3%D0%A7%D0%95%D0%91%D0%90/4.2/web/Talartis.html">Талартис</a>
+        <a href="#">Доп. контент</a>
+        <a href="file:///D:/УЧЕБА/4.2/web/Merch.html">Мерч</a>
+        <a href="file:///D:/УЧЕБА/4.2/web/news.html">Новости</a>
+        <div class="avatar">
+          <a href="#" id="basket" onclick="toggleCart()">Корзина</a>
+          <img src="avatar.png" alt="Аватарка" id="avatar">
+        </div>
+      </nav>
+    </header>
+
+
+    <div class="background">
+      <div>
+        <div class="poisk-poisk">
+          <input type="text" class="poisk">
+          <img src="glass.png" alt="Поиск" id="glass">
+        </div>
+      </div>
+    </div>
+
+    <div class="image-container">
+      <div class="image-row">
+        <img src="picture0.png" class="img-pic" alt="Изображение 1" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)" >
+        <img src="picture1.png" class="img-pic" alt="Изображение 2" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+      </div>
+      <div class="image-grid">
+        <img class="img-pic" src="picture2.png" alt="Изображение 3" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture3.png" alt="Изображение 4" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 5" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 6" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 7" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+        <img class="img-pic" src="picture4.png" alt="Изображение 8" onclick="toggleProduct()"
+          onmouseover="showPrice(this)" onmouseout="hidePrice(this)">
+        </img>
+      </div>
+    </div>
+
+    <div class="number">
+      <img src="ll.png" alt="Изображение 2" class="numbers">
+      <img src="l.png" alt="Изображение 2" class="numbers">
+      <img src="11.png" alt="Изображение 2" class="numbers">
+      <img src="r.png" alt="Изображение 2" class="numbers">
+      <img src="rr.png" alt="Изображение 2" class="numbers">
+    </div>
+
+  </div>
+  <footer class="footer" style="margin-top: 500px; display: flex; flex-direction: row; width: 100%;">
+    <div style="display: flex; align-items: center; display: flex; flex-direction: column; margin-left: 10px;">
+      <div class="logo"></div>
+      <div style="font-size: 16px; margin: 10px;">&copy; Талартис</div>
+    </div>
+    <div style=" display: flex; flex-direction: row; margin-left: 80%;">
+      <div id="tg"></div>
+      <div id="vk" style="margin-left: 20px;"></div>
+    </div>
+  </footer>
+
+  <div class="cart-wrapper">
+    <div class="close-icon" onclick="closeCart()">X</div>
+    <div class="cart-content">
+      <!-- Содержимое корзины -->
+      <h2>Корзина</h2>
+      <p>Здесь будут отображаться ваши выбранные товары.</p>
+    </div>
+  </div>
+
+  <div class="cart-wrapper-product">
+    <div class="close-icon-product" onclick="closeProduct()">X</div>
+    <div class="cart-content">
+      <h2>Товар</h2>
+      <p>500Р</p>
+      <p>Описание товара</p>
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <button class="blue-button">В корзину</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <script>
+    function toggleCart() {
+      document.querySelector('.cart-wrapper').classList.add('open');
+      document.querySelector('.overlay').classList.add('active');
+      document.querySelector('.wrapper').style.filter = 'blur(5px)';
+    }
+
+    function toggleProduct() {
+      document.querySelector('.cart-wrapper-product').classList.add('open');
+      document.querySelector('.overlay').classList.add('active');
+      document.querySelector('.wrapper').style.filter = 'blur(5px)';
+    }
+
+    function closeCart() {
+      document.querySelector('.cart-wrapper').classList.add('closing');
+      document.querySelector('.overlay').classList.add('fading');
+      document.querySelector('.wrapper').style.filter = 'none';
+
+      setTimeout(() => {
+        document.querySelector('.cart-wrapper').classList.remove('open', 'closing');
+        document.querySelector('.overlay').classList.remove('active', 'fading');
+      }, 500);
+    }
+
+    function closeProduct() {
+      document.querySelector('.cart-wrapper-product').classList.add('closing');
+      document.querySelector('.overlay').classList.add('fading');
+      document.querySelector('.wrapper').style.filter = 'none';
+
+      setTimeout(() => {
+        document.querySelector('.cart-wrapper-product').classList.remove('open', 'closing');
+        document.querySelector('.overlay').classList.remove('active', 'fading');
+      }, 500);
+    }
+
+    function showPrice(img) {
+      img.classList.add('darkened');
+    }
+
+    function hidePrice(img) {
+      img.classList.remove('darkened');
+    }
+  </script>
+</body>
+
+</html>

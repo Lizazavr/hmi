@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя Страница</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: inter, sans-serif;
+      background-color: #b1d2e5;
+      color: white;
+    }
+
+    .button {
+      background-color: #fbcc84;
+      color: white;
+      border: none;
+      width: 200px;
+      height: 65px;
+      border-radius: 5px;
+      margin: 0 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* добавляем анимацию перехода */
+      font-size: 24px;
+    }
+
+    /* эффект увеличения при наведении */
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    /* изменение цвета при нажатии */
+    .button:active {
+      background-color: orange;
+    }
+
+    .header {
+      background-color: #fbcc84;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0px;
+      width: 100%;
+      position: fixed;
+    }
+
+    .logo {
+      height: 45px;
+      width: 120px;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      background-size: cover;
+    }
+
+    .menu {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .menu a:not(:last-child) {
+      border-right: 2px solid white;
+    }
+
+    .avatar {
+      height: 50px;
+      width: 50px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      margin-left: 55%;
+    }
+
+    #avatar {
+      height: 49px;
+      width: 49px;
+    }
+
+    .banner {
+      background-color: #b1d2e5;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .background-image {
+      background-image: url('background_image.png');
+      background-size: cover;
+      height: 1700px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .background-banner {
+      background-image: url('banner4.png');
+      background-size: cover;
+      height: 750px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .background-text {
+      font-size: 48px;
+      margin-left: 200px;
+      margin-right: 200px;
+      margin-top: 100px;
+    }
+
+    .secondary-text {
+      font-size: 36px;
+      margin-left: 200px;
+      margin-right: 200px;
+      margin-top: 100px;
+    }
+
+    .bottom-button {
+      background-color: #fbcc84;
+      color: white;
+      border: none;
+      width: 100px;
+      height: 50px;
+      border-radius: 5px;
+      margin-top: 50px;
+      cursor: pointer;
+    }
+
+    .footer {
+      background-color: #b1d2e5;
+      height: 90px;
+      border-top: 1px solid white;
+
+      bottom: 0;
+      width: 100%;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    #basket {
+      border: none;
+      padding-left: 20px;
+    }
+
+    .banner-but {
+      margin-top: 650px;
+    }
+
+    .marg {
+      margin-top: 50px;
+    }
+
+    .gallery-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .gallery {
+      display: flex;
+      width: 900px;
+      height: 100%;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery-item {
+      flex: 0 0 200px;
+      margin: 0 10px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      border-radius: 5px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .end {
+      background-color: white;
+      padding-top: 13%;
+    }
+
+    .end a {
+      color: #fbcc84;
+      font-size: 20px;
+    }
+
+    .dop {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+      
+    }
+
+    .dop a {
+      color: #fbcc84;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      padding-right: 95px;
+    }
+
+    #tg {
+      background-image: url('tg.png');
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+    }
+
+    #vk {
+      background-image: url('vk.png');
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+    }
+
+    .cart-wrapper {
+      position: fixed;
+      top: 0;
+      right: -25%;
+      width: 25%;
+      height: 100%;
+      background-color: #fbcc84;
+      transition: right 0.5s ease, opacity 0.5s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+
+    .cart-wrapper.open {
+      right: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-wrapper.closing {
+      right: -25%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      display: none;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .overlay.fading {
+      opacity: 0;
+    }
+
+    .cart-wrapper .close-icon {
+      align-self: flex-end;
+      cursor: pointer;
+    }
+
+    .cart-wrapper-product {
+      position: fixed;
+      top: 0;
+      right: -25%;
+      width: 25%;
+      height: 100%;
+      background-color: #fbcc84;
+      transition: right 0.5s ease, opacity 0.5s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cart-wrapper-product.open {
+      right: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-wrapper-product.closing {
+      right: -25%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cart-wrapper-product .close-icon-product {
+      align-self: flex-end;
+      cursor: pointer;
+    }
+
+    .blue-button {
+      background-color: #b1d2e5;
+      color: white;
+      border: none;
+      width: 150px;
+      height: 50px;
+      border-radius: 5px;
+      margin: 0 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* добавляем анимацию перехода */
+      font-size: 24px;
+    }
+
+    /* эффект увеличения при наведении */
+    .blue-button:hover {
+      transform: scale(1.1);
+    }
+
+    .logo:hover img {
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+  <header class="header">
+    <a href="file:///D:/УЧЕБА/4.2/web/Main.html">
+      <img src="logo.png" alt="Аватарка" class="logo">
+    </a>
+    <nav class="menu">
+      <a href="file:///D:/%D0%A3%D0%A7%D0%95%D0%91%D0%90/4.2/web/Talartis.html">Талартис</a>
+      <a href="#">Доп. контент</a>
+      <a href="file:///D:/УЧЕБА/4.2/web/Merch.html">Мерч</a>
+      <a href="file:///D:/УЧЕБА/4.2/web/news.html">Новости</a>
+      <div class="avatar">
+        <a href="#" id="basket" onclick="toggleCart()">Корзина</a>
+        <img src="avatar.png" alt="Аватарка" id="avatar">
+      </div>
+    </nav>
+  </header>
+
+  <div class="background-banner">
+    <button class="button banner-but" onclick="toggleProduct()">П р о л о г</button>
+    <button class="button banner-but" onclick="toggleProduct()">1 Г л а в а</button>
+  </div>
+
+  <div class="background-image">
+    <div class="text-block">
+      <div class="background-text">Погрузить в захватывающее приключение, полное опасностей и волшебства</div>
+      <div class="secondary-text">
+        <p>Мирные дни покинули земли Талартиса и теперь только четверо приключенцев - Пыль, Артэмиса, Спурт и Никс -
+          могут сразить древнее зло, объединив свои усилия. Судьба мира зависит только от ваших решений - вернуться ли
+          спокойные времена или же все континенты погрязнут в уничтожающем хаосе. </p>
+      </div>
+      <button class="button marg" onclick="window.location.href = 'file:///D:/%D0%A3%D0%A7%D0%95%D0%91%D0%90/4.2/web/Talartis.html';">Подробнее</button>
+      <div class="dopcontent secondary-text">
+        <div class="background-text">Дополнительные главы и контент</div>
+
+        <!-- Первые две картинки -->
+        <div style="display: flex; justify-content: center; margin-top: 50px;">
+          <img src="picture1.png" alt="Картинка 1" style="margin-right: 20px; width: 40%; border-radius: 5px;" onclick="toggleProduct()">
+          <img src="picture2.png" alt="Картинка 2" style="width: 40%; border-radius: 5px;" onclick="toggleProduct()">
+        </div>
+        <!-- Вторые две картинки -->
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+          <img src="picture3.png" alt="Картинка 3" style="margin-right: 20px; width: 40%; border-radius: 5px;" onclick="toggleProduct()">
+          <img src="picture4.png" alt="Картинка 4" style="width: 40%; border-radius: 5px;" onclick="toggleProduct()">
+        </div>
+        <div class="dop">
+          <a href="#"> Перейти в доп. контент </a>
+        </div>
+      </div>
+
+      <div class="Merch">
+        <div class="background-text">Мерч</div>
+
+        <!-- Фотогалерея -->
+        <div class="gallery-container">
+          <div class="gallery">
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery1.png" alt="Картинка 1">
+            </div>
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery2.png" alt="Картинка 2">
+            </div>
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery3.png" alt="Картинка 3">
+            </div>
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery1.png" alt="Картинка 4">
+            </div>
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery2.png" alt="Картинка 5">
+            </div>
+            <div class="gallery-item" onclick="toggleProduct()">
+              <img src="galery3.png" alt="Картинка 6">
+            </div>
+            <div class="gallery-item end">
+              <a href="file:///D:/%D0%A3%D0%A7%D0%95%D0%91%D0%90/4.2/web/Merch.html">Больше мерча</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+  <footer class="footer" style="margin-top: 55%; display: flex; flex-direction: row; width: 100%;">
+    <div  style="display: flex; align-items: center; display: flex; flex-direction: column; margin-left: 10px;">
+      <div class="logo"></div>
+      <div style="font-size: 16px; margin: 10px;">&copy; Талартис</div>
+    </div>
+    <div style=" display: flex; flex-direction: row; margin-left: 80%;">
+      <div id="tg"></div>
+      <div id="vk" style="margin-left: 20px;"></div>
+    </div>
+  </footer>
+
+  <div class="cart-wrapper">
+    <div class="close-icon" onclick="closeCart()">X</div>
+    <div class="cart-content">
+      <!-- Содержимое корзины -->
+      <h2>Корзина</h2>
+      <p>Здесь будут отображаться ваши выбранные товары.</p>
+    </div>
+  </div>
+
+  <div class="cart-wrapper-product">
+    <div class="close-icon-product" onclick="closeProduct()">X</div>
+    <div class="cart-content">
+      <h2>Товар</h2>
+      <p>500Р</p>
+      <p>Описание товара</p>
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <button class="blue-button">В корзину</button>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <script>
+    function toggleCart() {
+      document.querySelector('.cart-wrapper').classList.add('open');
+      document.querySelector('.overlay').classList.add('active');
+      document.querySelector('.wrapper').style.filter = 'blur(5px)';
+    }
+
+    function toggleProduct() {
+      document.querySelector('.cart-wrapper-product').classList.add('open');
+      document.querySelector('.overlay').classList.add('active');
+      document.querySelector('.wrapper').style.filter = 'blur(5px)';
+    }
+
+    function closeCart() {
+      document.querySelector('.cart-wrapper').classList.add('closing');
+      document.querySelector('.overlay').classList.add('fading');
+      document.querySelector('.wrapper').style.filter = 'none';
+
+      setTimeout(() => {
+        document.querySelector('.cart-wrapper').classList.remove('open', 'closing');
+        document.querySelector('.overlay').classList.remove('active', 'fading');
+      }, 500);
+    }
+
+    function closeProduct() {
+      document.querySelector('.cart-wrapper-product').classList.add('closing');
+      document.querySelector('.overlay').classList.add('fading');
+      document.querySelector('.wrapper').style.filter = 'none';
+
+      setTimeout(() => {
+        document.querySelector('.cart-wrapper-product').classList.remove('open', 'closing');
+        document.querySelector('.overlay').classList.remove('active', 'fading');
+      }, 500);
+    }
+  </script>
+</body>
+
+</html>
